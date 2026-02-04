@@ -126,13 +126,6 @@ export function useTimer(options: UseTimerOptions = {}) {
     setState('idle');
   }, [clearTimerInterval, getDuration]);
 
-  // Update time when settings change (only if idle)
-  useEffect(() => {
-    if (state === 'idle') {
-      setTimeRemaining(getDuration(sessionType));
-    }
-  }, [settings, state, sessionType, getDuration]);
-
   // Cleanup on unmount
   useEffect(() => {
     return () => {
