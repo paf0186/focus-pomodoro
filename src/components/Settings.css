@@ -1,0 +1,180 @@
+.settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.settings-panel {
+  background: #2d2d2d;
+  border-radius: 16px;
+  padding: 24px;
+  width: 90%;
+  max-width: 360px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.settings-title {
+  margin: 0 0 24px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+}
+
+.settings-section {
+  margin-bottom: 24px;
+}
+
+.settings-section h3 {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-row label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+}
+
+.duration-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.duration-input input[type="number"] {
+  width: 60px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+
+.duration-input input[type="number"]:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.duration-input span {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+.setting-row input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.setting-row select {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.setting-row select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.setting-row select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.setting-row input[type="range"] {
+  width: 100px;
+  cursor: pointer;
+}
+
+.setting-row input[type="range"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.settings-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.settings-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-btn.cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.settings-btn.cancel:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.settings-btn.save {
+  background: #FF6B6B;
+  color: white;
+}
+
+.settings-btn.save:hover {
+  background: #ff5252;
+}
