@@ -1,18 +1,40 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#EE5A5A;stop-opacity:1" />
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B"/>
+      <stop offset="100%" style="stop-color:#EE5252"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#F0F0F0"/>
     </linearGradient>
   </defs>
-  <!-- Background circle -->
-  <circle cx="256" cy="256" r="240" fill="url(#bg)"/>
+
+  <!-- Background rounded square -->
+  <rect x="32" y="32" width="448" height="448" rx="96" ry="96" fill="url(#bgGrad)"/>
+
   <!-- Timer ring background -->
-  <circle cx="256" cy="256" r="180" fill="none" stroke="#ffffff" stroke-width="24" opacity="0.3"/>
-  <!-- Timer ring progress (showing ~75%) -->
-  <circle cx="256" cy="256" r="180" fill="none" stroke="#ffffff" stroke-width="24"
-          stroke-dasharray="848" stroke-dashoffset="212"
-          stroke-linecap="round" transform="rotate(-90 256 256)"/>
-  <!-- Center play button hint -->
-  <polygon points="230,190 230,322 330,256" fill="#ffffff" opacity="0.9"/>
+  <circle cx="256" cy="256" r="160" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="28"/>
+
+  <!-- Timer progress arc (showing ~70% complete) -->
+  <circle
+    cx="256" cy="256" r="160"
+    fill="none"
+    stroke="url(#ringGrad)"
+    stroke-width="28"
+    stroke-linecap="round"
+    stroke-dasharray="1005"
+    stroke-dashoffset="301"
+    transform="rotate(-90 256 256)"
+  />
+
+  <!-- Tomato shape in center -->
+  <ellipse cx="256" cy="270" rx="70" ry="65" fill="#C0392B"/>
+  <ellipse cx="256" cy="268" rx="65" ry="60" fill="#E74C3C"/>
+  <ellipse cx="240" cy="252" rx="20" ry="15" fill="rgba(255,255,255,0.3)"/>
+
+  <!-- Stem -->
+  <path d="M256 205 Q256 190 248 180 Q260 185 256 205" fill="#27AE60"/>
+  <path d="M256 205 Q256 190 264 180 Q252 185 256 205" fill="#2ECC71"/>
+  <ellipse cx="256" cy="208" rx="12" ry="6" fill="#27AE60"/>
 </svg>
