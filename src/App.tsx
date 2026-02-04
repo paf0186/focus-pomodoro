@@ -1,8 +1,10 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useTimer } from './hooks/useTimer';
+import { useStats } from './hooks/useStats';
 import { TimerDisplay } from './components/TimerDisplay';
 import { TimerControls } from './components/TimerControls';
 import { Settings } from './components/Settings';
+import { StatsDisplay } from './components/StatsDisplay';
 import type { TimerSettings, SessionType } from './types/timer';
 import { DEFAULT_SETTINGS } from './types/timer';
 import './App.css';
@@ -28,6 +30,9 @@ function saveSettings(settings: TimerSettings) {
 function App() {
   const [settings, setSettings] = useState<TimerSettings>(loadSettings);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [statsOpen, setStatsOpen] = useState(false);
+
+  const { recordSession, getTodayStats, getWeekStats } = useStats();
 
   const handleSessionComplete = useCallback((sessionType: SessionType) => {
     // Play sound on session complete
@@ -37,7 +42,12 @@ function App() {
 
     // Show system notification
     showNotification(sessionType);
-  }, [settings]);
+
+    // Record stats for focus sessions
+    if (sessionType === 'focus') {
+      recordSession(Math.round(settings.focusDuration / 60));
+    }
+  }, [settings, recordSession]);
 
   const {
     status,
@@ -95,9 +105,19 @@ function App() {
   return (
     <div className="app" style={{ background: getBackgroundColor() }}>
       <header className="app-header">
+        <button
+          className="header-button"
+          onClick={() => setStatsOpen(true)}
+          aria-label="Statistics"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M3 3v18h18" />
+            <path d="M7 16l4-4 4 4 5-6" />
+          </svg>
+        </button>
         <h1 className="app-title">Focus</h1>
         <button
-          className="settings-button"
+          className="header-button"
           onClick={() => setSettingsOpen(true)}
           aria-label="Settings"
         >
@@ -123,6 +143,13 @@ function App() {
         onSettingsChange={handleSettingsChange}
         isOpen={settingsOpen}
         onClose={() => setSettingsOpen(false)}
+      />
+
+      <StatsDisplay
+        todayStats={getTodayStats()}
+        weekStats={getWeekStats()}
+        isOpen={statsOpen}
+        onClose={() => setStatsOpen(false)}
       />
     </div>
   );
